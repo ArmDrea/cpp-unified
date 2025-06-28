@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-// __FILENAME__ : ¼Ò½º ÆÄÀÏ¸í Ãâ·Â
+// __FILENAME__ : ì†ŒìŠ¤ íŒŒì¼ëª… ì¶œë ¥
 #ifndef __FILENAME__
 #if defined(_WIN32) || defined(WIN32) || defined(__CYGWIN__) || \
     defined(__MINGW32__) || defined(__BORLANDC__)
@@ -19,7 +19,7 @@
 #endif
 #endif
 
-// MSVC C++11 Å½Áö°¡ ºÒ¿ÏÀüÇÏ¹Ç·Î ¸®ÅÍ·² Áö¿ø ¿©ºÎ·Î ÆÇº°
+// MSVC C++11 íƒì§€ê°€ ë¶ˆì™„ì „í•˜ë¯€ë¡œ ë¦¬í„°ëŸ´ ì§€ì› ì—¬ë¶€ë¡œ íŒë³„
 #if defined(__cpp_user_defined_literals)
 #define CONTEXTUAL_EXCEPTION_NOEXCEPT noexcept
 #else
@@ -28,7 +28,7 @@
 
 class ContextualException : public std::exception {
    public:
-    // ÃßÀû ÇÁ·¹ÀÓ
+    // ì¶”ì  í”„ë ˆì„
     struct Frame {
         std::string message;
         int code;
@@ -253,7 +253,7 @@ inline ContextualException* SafeChain(
 }  // namespace anonymous
 }  // namespace contextual_exception
 
-// ÀÎÀÚ °³¼ö °è»ê ¸ÅÅ©·Î
+// ì¸ì ê°œìˆ˜ ê³„ì‚° ë§¤í¬ë¡œ
 #define __CONTEXTUAL_GET_MACRO_ARGUMENTS_COUNT(_1, _2, _3, COUNT, ...) COUNT
 #define __CONTEXTUAL_EXPAND_MACRO(x) x
 
@@ -275,15 +275,15 @@ inline ContextualException* SafeChain(
     ::contextual_exception::anonymous::SafeChain(__FILENAME__, __LINE__, \
                                                  __FUNCTION__, __VA_ARGS__)
 
-// ³»ºÎ ±¸Çö: 2°³ ÀÎÀÚ ¹öÀü (message, exception_ptr)
+// ë‚´ë¶€ êµ¬í˜„: 2ê°œ ì¸ì ë²„ì „ (message, exception_ptr)
 #define __CHAIN_CONTEXTUAL_EXCEPTION_WITHOUT_CODE(message, exception_ptr) \
     (exception_ptr) = SAFE_CHAIN_CONTEXTUAL_EXCEPTION(message, exception_ptr)
-// ³»ºÎ ±¸Çö: 3°³ ÀÎÀÚ ¹öÀü (message, code, exception_ptr)
+// ë‚´ë¶€ êµ¬í˜„: 3ê°œ ì¸ì ë²„ì „ (message, code, exception_ptr)
 #define __CHAIN_CONTEXTUAL_EXCEPTION_WITH_CODE(message, code, exception_ptr) \
     (exception_ptr) =                                                        \
         SAFE_CHAIN_CONTEXTUAL_EXCEPTION(message, code, exception_ptr)
 
-// ÀûÀıÇÑ ±¸Çö ¼±ÅÃ ¸ÅÅ©·Î
+// ì ì ˆí•œ êµ¬í˜„ ì„ íƒ ë§¤í¬ë¡œ
 #define __CHOOSE_CHAIN_CONTEXTUAL_EXCEPTION_MACRO(...)                \
     __CONTEXTUAL_EXPAND_MACRO(__CONTEXTUAL_GET_MACRO_ARGUMENTS_COUNT( \
         __VA_ARGS__, __CHAIN_CONTEXTUAL_EXCEPTION_WITH_CODE,          \
